@@ -1,0 +1,47 @@
+.main-wrapper {
+    position: relative;
+}
+
+.spinner {
+    position: fixed;
+    height: 2em;
+    width: 2em;
+}
+
+.loader-image-container {
+    // position: relative;
+    // width: 100%;
+    // height: 100%;
+	position: fixed;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 999999;
+}
+
+.loader-image-container img {
+    height: 170px;
+    width: 170px;
+    position: absolute;
+    z-index: 999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+
+/* Transparent Overlay */
+
+.spinner:before {
+    content: "";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+}

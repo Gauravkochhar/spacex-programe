@@ -16,6 +16,7 @@ import { Mission } from 'src/app/core/model/spacex-program';
 })
 export class MissionListComponent implements OnInit {
 
+  public filterOpened = false;
   public readonly FILTER: any = missionFilter;
   public filterYearList: number[] = [];
   public defaultListView: boolean = true;

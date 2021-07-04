@@ -1,10 +1,42 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
+.mission-list-container {
+	margin-top: 30px;
+	@media (max-width: 700px) {
+		margin-top: 15px;
+	}
+}
+
 .custom-scroll {
 	height: calc(100vh - 115px);
 	padding-right: 10px;
+	@media (max-width: 700px) {
+		height: 100vh;
+	}
   }
+
+.transition {
+	transition: 0.2s all ease-in-out;
+	-moz-transition: 0.2s all ease-in-out;
+	-webkit-transition: 0.2s all ease-in-out;
+}
+
+.filter-main-heading {
+	@include display(flex, space-between, center);
+	margin-bottom: 10px;
+	.filter-heading {
+		@include fonts($medium + 2, 1.4, 500);
+		color: $dark;
+		margin-bottom: 0;
+	}
+	.close-filter {
+		display: none;
+		@media (max-width: 700px) {
+			display: inline-block;
+		}
+	}
+}
 
 .card {
 	border: none;
@@ -16,11 +48,6 @@
 	}
 	&.filter-card {
 		padding-right: 0;
-		.filter-heading {
-			@include fonts($medium + 2, 1.4, 500);
-			color: $dark;
-			margin-bottom: 10px;
-		}
 		.filter-wrapper {
 			&:not(:last-child) {
 				margin-bottom: 10px;
@@ -55,14 +82,20 @@
 						padding: 5px;
 						text-align: center;
 						cursor: pointer;
-						@extend .transition;
+						transition: 0.2s all ease-in-out;
+	-moz-transition: 0.2s all ease-in-out;
+	-webkit-transition: 0.2s all ease-in-out;
 						&:hover {
 							background: lighten($color: $sub-primary, $amount: 55);
-							@extend .transition;
+							transition: 0.2s all ease-in-out;
+	-moz-transition: 0.2s all ease-in-out;
+	-webkit-transition: 0.2s all ease-in-out;
 						}
 						&.active {
 							background: lighten($color: $sub-primary, $amount: 30);
-							@extend .transition;
+							transition: 0.2s all ease-in-out;
+	-moz-transition: 0.2s all ease-in-out;
+	-webkit-transition: 0.2s all ease-in-out;
 						}
 					}
 				}
@@ -74,19 +107,34 @@
 .listing-header {
 	@include display(flex, space-between, center);
 	margin-bottom: 30px;
+	@media (max-width: 700px) {
+		margin-bottom: 15px;
+	}
 	h4 {
 		@include fonts($medium, 1.4, 500);
 		margin-bottom: 0;
 	}
 	.listing-header-action {
 		@include display(inline-flex, flex-end, center);
+		.view-mode {
+			display: inline-flex;
+			@media (max-width: 700px) {
+				display: none;
+			}
+		}
+		.filter-action {
+			display: none;
+			@media (max-width: 700px) {
+				display: inline-flex;
+			}
+		}
 		p {
 			margin-bottom: 0;
 			@include fonts($regular, 1.4, 500);
 			color: $dark;
 			margin-right: 5px;
 		}
-		.list-view-buttons {
+		.list-action-buttons {
 			width: 20px;
 			height: 20px;
 			@extend .border-radius;
@@ -94,8 +142,22 @@
 			border-radius: 5px;
 			@include display(inline-flex, center, center);
 			cursor: pointer;
+			position: relative;
+			.applied-filter {
+				width: 8px;
+				height: 8px;
+				background: $primary;
+				border-radius: 50%;
+				display: inline-block;
+				position: absolute;
+				top: -2px;
+				right: -2px;
+			}
 			img {
 				width: 100%;
+			}
+			i {
+				font-size: 18px;
 			}
 		}
 	}
@@ -106,11 +168,19 @@
 	.listing-col {
 		padding: 0 7.5px;
 		margin-bottom: 15px;
+		@media (min-width: 700px) and (max-width: 1024px) {
+			flex: 0 0 50%;
+			max-width: 50%;
+		}
 	}
 	&.list-view {
 		.listing-col {
 			flex: 0 0 50%;
 			max-width: 50%;
+			@media (min-width: 700px) and (max-width: 1024px) {
+				flex: 0 0 100%;
+				max-width: 100%;
+			}
 		}
 	}
 }
@@ -135,13 +205,67 @@
 	}
   }
 
+  .filter-col {
+	@media (min-width: 700px) and (max-width: 1024px) {
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+	@media (max-width: 700px) {
+		width: 200px;
+		padding-left: 0;
+		padding-right: 0;
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		z-index: 9;
+		transform: translateX(-100%);
+		transition: 0.2s all ease-in-out;
+	-moz-transition: 0.2s all ease-in-out;
+	-webkit-transition: 0.2s all ease-in-out;
+		&.opened {
+			transform: translateX(0);
+		}
+		.filter-card {
+			height: 100%;
+			border-radius: 0;
+		}
+	}
+  }
+
+  .mission-list-wrapper {
+	@media (min-width: 700px) and (max-width: 1024px) {
+		flex: 0 0 75%;
+		max-width: 75%;
+	}
+  }
+
   
 // cdk virtual scroll
 .example-viewport {
     height: calc(100vh - 155px);
     width: 100%;
     border-radius: 4px;
-    overflow-y: hidden;
+    // overflow-y: hidden;
     overflow-x: hidden;
     word-break: break-word;
+	@media (max-width: 700px) {
+		height: calc(100vh - 125px);
+	}
+  }
+
+  .overlay {
+	  position: fixed;
+	  @extend .center-aligned;
+	  z-index: 8;
+	  background: rgb(0 0 0 / 20%);
+	  user-select: none;
+	  pointer-events: none;
+	  opacity: 0;
+	//   @extend .transition;
+	  &.opened {
+		  opacity: 1;
+		  user-select: all;
+		  pointer-events: all;
+	  }
   }

@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<div class="main-wrapper">
+	<div [hidden]="!showLoader" class="loader-container">
+		<div class="spinner"></div>
+		<div class="loader-image-container">
+			<img class="loaderImage" src="assets/images/loader.gif" />
+		</div>
+	</div>
+	<router-outlet></router-outlet>
+</div>
