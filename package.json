@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --base-href /spacex-mission-app/ --port=4200",
-    "build": "ng build --base-href /spacex-mission-app/",
-    "build:prod": "ng build --base-href /spacex-mission-app/ --prod",
+    "start": "ng serve --base-href /spacex-programe/ --port=4200",
+    "build": "ng build --base-href /spacex-programe/",
+    "build:prod": "ng build --base-href /spacex-programe/ --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

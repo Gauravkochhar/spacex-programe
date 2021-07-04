@@ -23,7 +23,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
   providers: [
     {
       provide: APP_BASE_HREF,
-      useValue: '/spacex-mission-app/'
+      useValue: '/spacex-programe/'
     }
   ],
   bootstrap: [AppComponent]
