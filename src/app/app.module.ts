@@ -8,13 +8,16 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './modules/shared/shared.module';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
+import { InjectionToken } from '@angular/core';
+export const LocalStorage = new InjectionToken('localStorage');
+
 @NgModule({
   declarations: [
     AppComponent,
     WelcomePageComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
