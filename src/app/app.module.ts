@@ -1,3 +1,4 @@
+import { APP_BASE_HREF } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,7 +20,12 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
     ReactiveFormsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_BASE_HREF,
+      useValue: '/spacex-mission-app/'
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
