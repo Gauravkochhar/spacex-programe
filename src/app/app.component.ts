@@ -19,16 +19,21 @@ export class AppComponent {
     private _loaderService: LoaderService,
     private _cd: ChangeDetectorRef
   ) {
-    this.activeLoaderMachine();
+    this.setLoaderSubscription();
   }
 
-  activeLoaderMachine() {
+  /**
+  * This function is updating the loader state - show/hide.
+  */
+  setLoaderSubscription() {
     this._loaderService.status.subscribe((val: boolean) => {
-
       this.showLoader = val;
     })
   }
 
+  /**
+  * This function is using to manually call to dom for detect change (to avoid expressChange error).
+  */
   ngAfterViewChecked() {
     this._cd.detectChanges();
   }
