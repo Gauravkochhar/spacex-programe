@@ -1,34 +1,39 @@
 <div class="mission-wrapper">
 	<div class="mission-thumbnail">
+		<!-- Mission Image -->
 		<img class="img-responsive" draggable="false" [src]="missionInfo?.links?.mission_patch_small"
 			alt="mission-image">
 	</div>
 	<div class="mission-detail">
-		<h4 class="mission-title">{{ missionInfo?.mission_name || 'N/A'}}</h4>
+		<h4 class="mission-title">{{ missionInfo?.mission_name || 'N.A'}}</h4>
 		<ul class="list-item">
+			<!-- Mission Id's -->
 			<li class="list-items"
 				[ngClass]="{'mission-available': (missionInfo?.mission_id && (missionInfo?.mission_id.length > 1))}">
 				<label>Mission Ids</label>
-
+				<!-- For Single Mission Id -->
 				<p *ngIf="!(missionInfo?.mission_id && missionInfo?.mission_id.length) || 
 				(missionInfo?.mission_id && (missionInfo?.mission_id.length == 1))">
 					{{ missionInfo | dataFromPath: 'mission_id[0]' }}
 				</p>
-
+				<!-- For Multiple Mission Id -->
 				<ul class="sub-list-item" *ngIf="(missionInfo?.mission_id && missionInfo?.mission_id.length > 1)">
 					<li class="sub-list-items" *ngFor="let mission of missionInfo?.mission_id">
 						{{ mission }}
 					</li>
 				</ul>
 			</li>
+			<!-- Launch Year -->
 			<li class="list-items">
 				<label>Launch Year</label>
-				<p>{{(missionInfo?.launch_year+ '') || 'N/A' | titlecase }}</p>
+				<p>{{(missionInfo?.launch_year+ '') || 'N.A' | titlecase }}</p>
 			</li>
+			<!-- Successful Launching -->
 			<li class="list-items">
 				<label>Successful Launch</label>
 				<p>{{ missionInfo | dataFromPath: 'launch_success' }}</p>
 			</li>
+			<!-- Successful Landing -->
 			<li class="list-items">
 				<label>Successful Landing</label>
 				<p>{{ missionInfo | dataFromPath: 'rocket.first_stage.cores[0].land_success' }}
@@ -37,3 +42,4 @@
 		</ul>
 	</div>
 </div>
+<!-- End of Mission Card -->

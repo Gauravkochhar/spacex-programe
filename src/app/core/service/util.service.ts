@@ -8,11 +8,19 @@ export class UtilService {
 
   constructor() { }
 
-  removeUndefined(obj: any) {
+  /**
+  * Function is using for remove only undefined containing properties.
+  */
+  public removeUndefined(obj: any) {
     return JSON.parse(JSON.stringify(obj));
   }
 
-  removeEmptyProperties(obj: any) {
+  /**
+  * Function is removing falsy value properties of an object.
+  */
+  public removeEmptyProperties(obj: any) {
     return _.pickBy(obj, (value) => value !== '');
   }
 }
+
+

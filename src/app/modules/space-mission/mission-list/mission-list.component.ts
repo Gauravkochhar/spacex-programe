@@ -17,18 +17,13 @@ import { LoaderService } from 'src/app/core/service/loader.service';
 })
 export class MissionListComponent implements OnInit {
 
+  public readonly FILTER: any = missionFilter;
   public filterOpened = false;
   public filterApplied = false;
-  public readonly FILTER: any = missionFilter;
+  public defaultListView = true;
   public filterYearList: number[] = [];
-  public defaultListView: boolean = true;
   public missionList$: Observable<Mission[]> | undefined;
-  public appliedFilter: any = {
-    limit: '100',
-    year: '',
-    launch: '',
-    landing: ''
-  };
+  public appliedFilter: any = this.defaultFilter;
 
   constructor(
     private _apiService: ApiService,
@@ -41,14 +36,33 @@ export class MissionListComponent implements OnInit {
     this.getMissionList();
   }
 
-  getYearFilterList() {
+  /**
+  * This function is using to return default filter values of initial stage.
+  */
+  get defaultFilter(): any {
+    return {
+      limit: '100',
+      year: '',
+      launch: '',
+      landing: ''
+    };
+  }
+
+  /**
+  * This Function is using to create dynamic list of last 16 years for filter operation.
+  */
+  private getYearFilterList() {
     const currentYear = new Date().getFullYear();
     for (let i = (currentYear - 15); i <= currentYear; i++) {
       this.filterYearList.push(i);
     }
   }
 
-  getAppliedFilter() {
+  /**
+  * 1- This Function returns an object with applied filter values.
+  * 2- Using for request body
+  */
+  private getAppliedFilter() {
     return this._utilSerivice.removeEmptyProperties(_.cloneDeep({
       limit: _.get(this.appliedFilter, 'limit', '100'),
       launch_success: _.get(this.appliedFilter, this.FILTER.launch, ''),
@@ -57,7 +71,10 @@ export class MissionListComponent implements OnInit {
     }));
   }
 
-  getMissionList() {
+  /**
+  * This function is using to get default mission list according to applied filter.
+  */
+  private getMissionList() {
     this._apiService.getMissionList(this.getAppliedFilter()).subscribe((res: Mission[]) => {
       const isResultOk = _.isArray(_.get(res, 'body')) ? true : false;
       if (isResultOk) {
@@ -69,27 +86,27 @@ export class MissionListComponent implements OnInit {
     })
   }
 
-  checkFilter(FILTER: string, requestFilterVal: string | number | boolean) {
+  /**
+  * This function is calling the API with respect to the requested filter data.
+  */
+  public checkFilter(FILTER: string, requestFilterVal: string | number | boolean) {
     this.appliedFilter[FILTER] = (this.appliedFilter[FILTER] === requestFilterVal) ? '' : requestFilterVal;
     this.getMissionList();
     this.updateFilterStatus();
 
   }
 
-  updateFilterStatus() {
+  /**
+  * This function updating the applied filter status.
+  */
+  private updateFilterStatus() {
     this.filterApplied = !Object.keys(this.FILTER).every((filterKey) => this.appliedFilter[filterKey] === this.defaultFilter[filterKey]);
   }
 
-  get defaultFilter(): any {
-    return {
-      limit: '100',
-      year: '',
-      launch: '',
-      landing: ''
-    };
-  }
-
-  resetFilter() {
+  /**
+  * This function is clearing the applied filters.
+  */
+  private resetFilter() {
     this.appliedFilter = this.defaultFilter;
   }
 

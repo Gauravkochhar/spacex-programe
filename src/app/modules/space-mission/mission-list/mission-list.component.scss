@@ -1,12 +1,15 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
+
 .mission-list-container {
 	margin-top: 30px;
 	@media (max-width: 700px) {
 		margin-top: 15px;
 	}
 }
+
+// ----------------- ** Filter Section Styling Starts (Left Section) ** --------------------- //
 
 .filter-main-heading {
 	@include display(flex, space-between, center);
@@ -50,7 +53,6 @@
 	}
   }
 
-//   @Styling For Filter Drawer Card..
 .card {
 	border: none;
 	padding: 10px;
@@ -65,6 +67,7 @@
 			&:not(:last-child) {
 				margin-bottom: 10px;
 			}
+			// Sub Filters
 			.filter-sub-heading {
 				border-bottom: 0.1px solid $gray;
 				border-bottom-width: 0.5px;
@@ -77,6 +80,7 @@
 					margin-bottom: 0px;
 				}
 			}
+			// Style of Filter Chip
 			.list-item {
 				padding: 0;
 				margin: 0;
@@ -114,6 +118,25 @@
 	}
 }
 
+.custom-scroll {
+	height: calc(100vh - 115px);
+	padding-right: 10px;
+	@media (max-width: 700px) {
+		height: 100vh;
+	}
+}
+// -------------------------- ** End Of Filter Section Styling ** -------------------------------- //
+
+
+// ----------------- ** Record Found + View Mode Starts (Right Section) ** --------------------------- //
+
+.mission-list-wrapper {
+	@media (min-width: 700px) and (max-width: 1024px) {
+		flex: 0 0 75%;
+		max-width: 75%;
+	}
+}
+
 .listing-header {
 	@include display(flex, space-between, center);
 	margin-bottom: 30px;
@@ -124,6 +147,7 @@
 		@include fonts($medium, 1.4, 500);
 		margin-bottom: 0;
 	}
+	// Lable for view mode & filter
 	.listing-header-action {
 		@include display(inline-flex, flex-end, center);
 		.view-mode {
@@ -144,6 +168,7 @@
 			color: $dark;
 			margin-right: 5px;
 		}
+		// Buttons for view-mode & filter
 		.list-action-buttons {
 			width: 20px;
 			height: 20px;
@@ -156,7 +181,7 @@
 			.applied-filter {
 				width: 8px;
 				height: 8px;
-				background: $primary;
+				background: $danger;
 				border-radius: 50%;
 				display: inline-block;
 				position: absolute;
@@ -173,6 +198,11 @@
 	}
 }
 
+// ----------------- ** End Of Record Found + View Mode Section ** --------------------------- //
+
+
+
+// ----------------- ** Start of Mission Card Listing Section (Right Section) ** -------------------- //
 .listing-row {
 	margin: 0 -7.5px;
 	.listing-col {
@@ -215,21 +245,6 @@
 	}
   }
 
-  .mission-list-wrapper {
-	@media (min-width: 700px) and (max-width: 1024px) {
-		flex: 0 0 75%;
-		max-width: 75%;
-	}
-  }
-
-  .custom-scroll {
-	height: calc(100vh - 115px);
-	padding-right: 10px;
-	@media (max-width: 700px) {
-		height: 100vh;
-	}
-  }
-
   .no-record-found {
 	height: 300px;
 	@include display(flex, center, center);
@@ -239,3 +254,6 @@
 		margin-top: 10px;
 	}
   }
+
+  // ----------------- ** Start of Mission Card Listing Section ** -------------------- //
+

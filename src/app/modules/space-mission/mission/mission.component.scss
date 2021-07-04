@@ -1,6 +1,12 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
+.img-responsive {
+	user-select: none;
+	pointer-events: none;
+	height: 80%;
+}
+
 .mission-wrapper {
 	.mission-thumbnail {
 		width: 100%;
@@ -71,7 +77,4 @@
 	}
 }
 
-.img-responsive {
-	user-select: none;
-	height: 80%;
-}
+// End of Mission Card Style

@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class MissionComponent implements OnInit {
 
-  @Input() missionInfo: any;
+  @Input() public missionInfo: any;
 
   constructor() { }
 

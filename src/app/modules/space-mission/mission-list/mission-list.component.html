@@ -1,6 +1,7 @@
 <app-header></app-header>
 <div class="container mission-list-container">
 	<div class="row">
+		<!-- Filter Section Start (** Left **)-->
 		<div class="col-md-2 filter-col" [ngClass]="{'opened': filterOpened}">
 			<div class="card filter-card">
 				<perfect-scrollbar class="custom-scroll">
@@ -8,7 +9,7 @@
 						<h3 class="filter-heading">Filters</h3>
 						<i class="material-icons close-filter" (click)="filterOpened=false;">close</i>
 					</div>
-					<!-- Year Filter -->
+					<!-- 1. Year Filter -->
 					<div class="filter-wrapper">
 						<div class="filter-sub-heading">
 							<h4>Launch Year</h4>
@@ -20,7 +21,7 @@
 							</li>
 						</ul>
 					</div>
-					<!-- Launch Filter -->
+					<!-- 2. Launch Filter -->
 					<div class="filter-wrapper">
 						<div class="filter-sub-heading">
 							<h4>Successful Launch</h4>
@@ -36,7 +37,7 @@
 							</li>
 						</ul>
 					</div>
-					<!--  -->
+					<!-- 3. Landing Filter -->
 					<div class="filter-wrapper">
 						<div class="filter-sub-heading">
 							<h4>Successful Landing</h4>
@@ -55,10 +56,15 @@
 				</perfect-scrollbar>
 			</div>
 		</div>
+		<!-- End of Filter Section -->
+
+
+		<!-- Missions Section Starts (** Right **) -->
 		<div class="col-md-10 mission-list-wrapper">
 			<div class="listing-header">
 				<h4>Result found: {{ (missionList$ | async)?.length }}</h4>
 				<div class="listing-header-action">
+					<!-- View Mode Section -->
 					<div class="view-mode">
 						<p>View</p>
 						<div class="list-action-buttons">
@@ -68,6 +74,7 @@
 								alt="">
 						</div>
 					</div>
+					<!-- Filter Section For Mobile View -->
 					<div class="filter-action">
 						<p>Filter</p>
 						<div class="list-action-buttons" (click)="filterOpened = !filterOpened;">
@@ -77,9 +84,9 @@
 					</div>
 				</div>
 			</div>
-			<!-- End of List Header -->
+
+			<!-- Mission-Card-Listing Section Starts -->
 			<cdk-virtual-scroll-viewport itemSize="5" class="cdk-viewport" *ngIf="(missionList$ | async)?.length">
-				<!-- <perfect-scrollbar class="custom-scroll"> -->
 				<div class="row listing-row" [ngClass]="{'list-view': !defaultListView, 'grid-view': defaultListView}">
 					<div class="col-md-3 listing-col" *cdkVirtualFor="let mission of missionList$ | async;">
 						<div class="card listing-card">
@@ -87,13 +94,13 @@
 						</div>
 					</div>
 				</div>
-				<!-- </perfect-scrollbar> -->
 			</cdk-virtual-scroll-viewport>
 			<div class="no-record-found" *ngIf="!(missionList$ | async)?.length && !loaderService.callPendingStatus">
 				<img src="assets/images/no-data-found.svg" alt="">
 				<p>No Record Found</p>
 			</div>
 		</div>
+		<!-- End Of Missions Section -->
 	</div>
 
 </div>

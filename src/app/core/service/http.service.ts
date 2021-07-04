@@ -66,6 +66,9 @@ export class HttpService {
     return headers;
   }
 
+  /**
+  * Function for calling Rest API using GET request.
+  */
   getRequest(url: String, params?: any, headerArr?: Array<HeaderInterface>, needLoader: boolean = true): Observable<any> {
     if (needLoader) {
       this.loaderService.showLoader();
@@ -85,6 +88,9 @@ export class HttpService {
       }));
   }
 
+  /**
+   * Function for calling Rest API using POST request.
+   */
   postRequest(url: string, body: Object, headerArr?: Array<HeaderInterface>, params?: HttpParams, needLoader: boolean = true): Observable<any> {
     if (needLoader) {
       this.loaderService.showLoader();
@@ -102,5 +108,46 @@ export class HttpService {
       }, err => {
         if (needLoader) { this.loaderService.hideLoader(); }
       }));
+  }
+
+  /**
+  * Function for calling Rest API using PUT request.
+  */
+  putRequest(url: String, body: Object, params?: HttpParams, headerArr?: Array<HeaderInterface>, needLoader: boolean = true) {
+    if (needLoader) {
+      this.loaderService.showLoader();
+    }
+    const headers: HttpHeaders = this.getHeaders(headerArr);
+    const _body = this.getCommonBodyData(body);
+    this.httpOptions = {
+      headers: headers,
+      params: params,
+      observe: 'response'
+    }
+    return this.httpClient.put(`${this._baseUrl}/${url}`, _body, this.httpOptions).pipe(tap(res => {
+      if (needLoader) { this.loaderService.hideLoader(); }
+    }, err => {
+      if (needLoader) { this.loaderService.hideLoader(); }
+    }));
+  }
+
+  /**
+  * Function for calling Rest API using DELETE request.
+  */
+  deleteRequest(url: String, params?: HttpParams, headerArr?: Array<HeaderInterface>, needLoader: boolean = true) {
+    if (needLoader) {
+      this.loaderService.showLoader();
+    }
+    const headers: HttpHeaders = this.getHeaders(headerArr);
+    this.httpOptions = {
+      headers: headers,
+      params: params,
+      observe: 'response'
+    }
+    return this.httpClient.delete(`${this._baseUrl}/${url}`, this.httpOptions).pipe(tap(res => {
+      if (needLoader) { this.loaderService.hideLoader(); }
+    }, err => {
+      if (needLoader) { this.loaderService.hideLoader(); }
+    }));
   }
 }
