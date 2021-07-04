@@ -38,3 +38,30 @@ body {
 .mb40 {
     margin-bottom: 40px;
 }
+
+
+.cdk-viewport {
+    height: calc(100vh - 155px);
+    width: 100%;
+    border-radius: 4px;
+    overflow-x: hidden;
+    word-break: break-word;
+	@media (max-width: 700px) {
+		height: calc(100vh - 125px);
+	}
+  }
+
+  .overlay {
+	  position: fixed;
+	  @extend .center-aligned;
+	  z-index: 8;
+	  background: rgb(0 0 0 / 20%);
+	  user-select: none;
+	  pointer-events: none;
+	  opacity: 0;
+	  &.opened {
+		  opacity: 1;
+		  user-select: all;
+		  pointer-events: all;
+	  }
+  }

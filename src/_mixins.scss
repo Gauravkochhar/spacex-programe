@@ -45,15 +45,15 @@
 	-webkit-line-clamp: $line;
 }
 
+@mixin  transition($time, $animation) {
+	transition: $time all $animation;
+	-moz-transition: $time all $animation;
+	-webkit-transition: $time all $animation;
+}
+
 .border-radius {
 	border-radius: 4px;
 }
-
-// .transition1 {
-// 	transition: 0.2s all ease-in-out;
-// 	-moz-transition: 0.2s all ease-in-out;
-// 	-webkit-transition: 0.2s all ease-in-out;
-// }
 
 .center-aligned {
 	top: 0;

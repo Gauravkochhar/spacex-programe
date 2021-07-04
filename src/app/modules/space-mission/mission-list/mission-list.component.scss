@@ -8,20 +8,6 @@
 	}
 }
 
-.custom-scroll {
-	height: calc(100vh - 115px);
-	padding-right: 10px;
-	@media (max-width: 700px) {
-		height: 100vh;
-	}
-  }
-
-.transition {
-	transition: 0.2s all ease-in-out;
-	-moz-transition: 0.2s all ease-in-out;
-	-webkit-transition: 0.2s all ease-in-out;
-}
-
 .filter-main-heading {
 	@include display(flex, space-between, center);
 	margin-bottom: 10px;
@@ -37,6 +23,32 @@
 		}
 	}
 }
+
+.filter-col {
+	@media (min-width: 700px) and (max-width: 1024px) {
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+	@media (max-width: 700px) {
+		width: 200px;
+		padding-left: 0;
+		padding-right: 0;
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		z-index: 9;
+		transform: translateX(-100%);
+		@include transition(0.2s, ease-in-out);
+		&.opened {
+			transform: translateX(0);
+		}
+		.filter-card {
+			height: 100%;
+			border-radius: 0;
+		}
+	}
+  }
 
 .card {
 	border: none;
@@ -82,20 +94,17 @@
 						padding: 5px;
 						text-align: center;
 						cursor: pointer;
-						transition: 0.2s all ease-in-out;
-	-moz-transition: 0.2s all ease-in-out;
-	-webkit-transition: 0.2s all ease-in-out;
+						@include transition(0.2s, ease-in-out);
+			
 						&:hover {
 							background: lighten($color: $sub-primary, $amount: 55);
-							transition: 0.2s all ease-in-out;
-	-moz-transition: 0.2s all ease-in-out;
-	-webkit-transition: 0.2s all ease-in-out;
+							@include transition(0.2s, ease-in-out);
+				
 						}
 						&.active {
 							background: lighten($color: $sub-primary, $amount: 30);
-							transition: 0.2s all ease-in-out;
-	-moz-transition: 0.2s all ease-in-out;
-	-webkit-transition: 0.2s all ease-in-out;
+							@include transition(0.2s, ease-in-out);
+				
 						}
 					}
 				}
@@ -205,34 +214,6 @@
 	}
   }
 
-  .filter-col {
-	@media (min-width: 700px) and (max-width: 1024px) {
-		flex: 0 0 25%;
-		max-width: 25%;
-	}
-	@media (max-width: 700px) {
-		width: 200px;
-		padding-left: 0;
-		padding-right: 0;
-		position: fixed;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		z-index: 9;
-		transform: translateX(-100%);
-		transition: 0.2s all ease-in-out;
-	-moz-transition: 0.2s all ease-in-out;
-	-webkit-transition: 0.2s all ease-in-out;
-		&.opened {
-			transform: translateX(0);
-		}
-		.filter-card {
-			height: 100%;
-			border-radius: 0;
-		}
-	}
-  }
-
   .mission-list-wrapper {
 	@media (min-width: 700px) and (max-width: 1024px) {
 		flex: 0 0 75%;
@@ -240,32 +221,10 @@
 	}
   }
 
-  
-// cdk virtual scroll
-.example-viewport {
-    height: calc(100vh - 155px);
-    width: 100%;
-    border-radius: 4px;
-    // overflow-y: hidden;
-    overflow-x: hidden;
-    word-break: break-word;
+  .custom-scroll {
+	height: calc(100vh - 115px);
+	padding-right: 10px;
 	@media (max-width: 700px) {
-		height: calc(100vh - 125px);
+		height: 100vh;
 	}
-  }
-
-  .overlay {
-	  position: fixed;
-	  @extend .center-aligned;
-	  z-index: 8;
-	  background: rgb(0 0 0 / 20%);
-	  user-select: none;
-	  pointer-events: none;
-	  opacity: 0;
-	//   @extend .transition;
-	  &.opened {
-		  opacity: 1;
-		  user-select: all;
-		  pointer-events: all;
-	  }
   }

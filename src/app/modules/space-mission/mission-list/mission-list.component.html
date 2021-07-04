@@ -78,7 +78,7 @@
 				</div>
 			</div>
 			<!-- End of List Header -->
-			<cdk-virtual-scroll-viewport itemSize="5" class="example-viewport">
+			<cdk-virtual-scroll-viewport itemSize="5" class="cdk-viewport">
 				<!-- <perfect-scrollbar class="custom-scroll"> -->
 				<div class="row listing-row" [ngClass]="{'list-view': !defaultListView, 'grid-view': defaultListView}">
 					<div class="col-md-3 listing-col" *cdkVirtualFor="let mission of missionList$ | async;">
