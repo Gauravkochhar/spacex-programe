@@ -1,0 +1,36 @@
+.welcome-wrapper {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: url(./../../assets/images/home-bg3.jpg);
+    // background-position: center bottom;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    padding-left: 40px;
+    align-items: center;
+    justify-content: flex-end;
+    .welcome-inner {
+        text-transform: uppercase;
+        margin-right: 40px;
+        p {
+            font-size: 30px;
+            margin-bottom: 0;
+        }
+        h2 {
+            font-size: 50px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #ffffff;
+            @media (max-width: 480px) {
+                -webkit-text-stroke: 0.5px black;
+            }
+        }
+        .btn {
+            background: none;
+            border-color: #333;
+            color: #333;
+            border-radius: 30px;
+        }
+    }
+}

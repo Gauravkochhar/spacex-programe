@@ -1,0 +1,18 @@
+@import '../../../../../variables';
+@import '../../../../../mixins';
+
+.top-bar {
+	background: $light;
+	padding: 15px 10px;
+	@include boxShadow(0, 4px, 8px, 0);
+	h2 {
+		&.logo {
+			color: $dark;
+			margin-bottom: 0;
+			font-size: $large;
+			span {
+				cursor: pointer;
+			}
+		}
+	}
+}

@@ -1,0 +1,84 @@
+<app-header></app-header>
+<div class="container mt30">
+	<div class="row">
+		<div class="col-md-2 filter-col">
+			<div class="card filter-card">
+				<perfect-scrollbar class="custom-scroll">
+					<h3 class="filter-heading">Filters</h3>
+					<!-- Year Filter -->
+					<div class="filter-wrapper">
+						<div class="filter-sub-heading">
+							<h4>Launch Year</h4>
+						</div>
+						<ul class="list-item">
+							<li class="list-items" *ngFor="let year of filterYearList;">
+								<span [ngClass]="{'active': appliedFilter[FILTER.year]==year}"
+									(click)="checkFilter(FILTER.year, year)">{{ year }}</span>
+							</li>
+						</ul>
+					</div>
+					<!-- Launch Filter -->
+					<div class="filter-wrapper">
+						<div class="filter-sub-heading">
+							<h4>Successful Launch</h4>
+						</div>
+						<ul class="list-item">
+							<li class="list-items">
+								<span [ngClass]="{'active': appliedFilter[FILTER.launch]===true }"
+									(click)="checkFilter(FILTER.launch, true)">True</span>
+							</li>
+							<li class="list-items">
+								<span [ngClass]="{'active': appliedFilter[FILTER.launch]===false }"
+									(click)="checkFilter(FILTER.launch, false)">False</span>
+							</li>
+						</ul>
+					</div>
+					<!--  -->
+					<div class="filter-wrapper">
+						<div class="filter-sub-heading">
+							<h4>Successful Landing</h4>
+						</div>
+						<ul class="list-item">
+							<li class="list-items">
+								<span [ngClass]="{'active': appliedFilter[FILTER.landing]===true }"
+									(click)="checkFilter(FILTER.landing, true)">True</span>
+							</li>
+							<li class="list-items">
+								<span [ngClass]="{'active': appliedFilter[FILTER.landing]===false }"
+									(click)="checkFilter(FILTER.landing, false)">False</span>
+							</li>
+						</ul>
+					</div>
+				</perfect-scrollbar>
+			</div>
+		</div>
+		<div class="col-md-10">
+			<div class="listing-header">
+				<h4>Result found: {{ (missionList$ | async)?.length }}</h4>
+				<div class="listing-header-action">
+					<p>View</p>
+					<div class="list-view-buttons">
+						<img src="assets/images/Group2.svg" *ngIf="defaultListView" (click)="defaultListView=false"
+							alt="">
+						<img src="assets/images/Group1.svg" *ngIf="!defaultListView" (click)="defaultListView=true"
+							alt="">
+					</div>
+				</div>
+			</div>
+			<!-- End of List Header -->
+			<cdk-virtual-scroll-viewport itemSize="5" class="example-viewport">
+				<perfect-scrollbar class="custom-scroll">
+					<div class="row listing-row"
+						[ngClass]="{'list-view': !defaultListView, 'grid-view': defaultListView}">
+						<div class="col-md-3 listing-col" *cdkVirtualFor="let mission of missionList$ | async;">
+							<div class="card listing-card">
+								<app-mission [missionInfo]="mission"></app-mission>
+							</div>
+						</div>
+					</div>
+				</perfect-scrollbar>
+			</cdk-virtual-scroll-viewport>
+		</div>
+	</div>
+
+</div>

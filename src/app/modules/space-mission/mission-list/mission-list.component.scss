@@ -1,0 +1,147 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.custom-scroll {
+	height: calc(100vh - 115px);
+	padding-right: 10px;
+  }
+
+.card {
+	border: none;
+	padding: 10px;
+	@include boxShadow(0, 4px, 8px, 0);
+	@extend .border-radius;
+	&.listing-card {
+		height: 100%;
+	}
+	&.filter-card {
+		padding-right: 0;
+		.filter-heading {
+			@include fonts($medium + 2, 1.4, 500);
+			color: $dark;
+			margin-bottom: 10px;
+		}
+		.filter-wrapper {
+			&:not(:last-child) {
+				margin-bottom: 10px;
+			}
+			.filter-sub-heading {
+				border-bottom: 0.1px solid $gray;
+				border-bottom-width: 0.5px;
+				text-align: center;
+				margin-bottom: 5px;
+				user-select: none;
+				h4 {
+					@include fonts($regular, 1.4, 500);
+					color: $medium-gray;
+					margin-bottom: 0px;
+				}
+			}
+			.list-item {
+				padding: 0;
+				margin: 0;
+				@include display(flex, flex-start, flex-start);
+				flex-wrap: wrap;
+				margin: 0 -5px;
+				li {
+					width: 50%;
+					display: inline-flex;
+					padding: 5px;
+					span {
+						@extend .border-radius;
+						background: lighten($color: $sub-primary, $amount: 60);
+						width: 100%;
+						display: block;
+						padding: 5px;
+						text-align: center;
+						cursor: pointer;
+						@extend .transition;
+						&:hover {
+							background: lighten($color: $sub-primary, $amount: 55);
+							@extend .transition;
+						}
+						&.active {
+							background: lighten($color: $sub-primary, $amount: 30);
+							@extend .transition;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.listing-header {
+	@include display(flex, space-between, center);
+	margin-bottom: 30px;
+	h4 {
+		@include fonts($medium, 1.4, 500);
+		margin-bottom: 0;
+	}
+	.listing-header-action {
+		@include display(inline-flex, flex-end, center);
+		p {
+			margin-bottom: 0;
+			@include fonts($regular, 1.4, 500);
+			color: $dark;
+			margin-right: 5px;
+		}
+		.list-view-buttons {
+			width: 20px;
+			height: 20px;
+			@extend .border-radius;
+			background: $light;
+			border-radius: 5px;
+			@include display(inline-flex, center, center);
+			cursor: pointer;
+			img {
+				width: 100%;
+			}
+		}
+	}
+}
+
+.listing-row {
+	margin: 0 -7.5px;
+	.listing-col {
+		padding: 0 7.5px;
+		margin-bottom: 15px;
+	}
+	&.list-view {
+		.listing-col {
+			flex: 0 0 50%;
+			max-width: 50%;
+		}
+	}
+}
+
+::ng-deep {
+	.list-view {
+		.listing-col {
+			.listing-card {
+				.mission-wrapper {
+					display: flex;
+					.mission-thumbnail {
+						width: 150px;
+						height: 150px;
+						@include display(flex, center, center);
+					}
+					.mission-detail {
+						width: calc(100% - 175px);
+					}
+				}
+			}
+		}
+	}
+  }
+
+  
+// cdk virtual scroll
+.example-viewport {
+    height: calc(100vh - 155px);
+    width: 100%;
+    border-radius: 4px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    word-break: break-word;
+  }

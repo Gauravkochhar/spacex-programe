@@ -1,0 +1,74 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.mission-wrapper {
+	.mission-thumbnail {
+		width: 100%;
+		height: 200px;
+		@include display(flex, center, center);
+	}
+	.mission-detail {
+		.mission-title {
+			@include fonts(18px, 1.4, 500);
+			color: $primary;
+			@include lineClamp(2);
+		}
+		.list-item {
+			list-style: none;
+			padding-left: 0;
+			.list-items {
+				@include display(flex, space-between, center);
+				&.mission-available {
+					@include display(flex, flex-start, flex-start);
+					flex-direction: column;
+				}
+				&:not(:last-child) {
+					margin-bottom: 5px;
+				}
+				label {
+					display: block;
+					@include fonts($regular, 1.4, 500);
+					color: $dark;
+					margin-bottom: 1px;
+				}
+				p {
+					@include fonts($regular, 1.4, 500);
+					color: $dark;
+					opacity: 0.8;
+					margin-bottom: 0px;
+					text-transform: capitalize;
+				}
+				.sub-list-item {
+					padding-left: 5px;
+					.sub-list-items {
+						list-style: none;
+						position: relative;
+						padding-left: 10px;
+						opacity: 0.8;
+						@include fonts($regular, 1.4, 500);
+						&:not(:last-child) {
+							margin-bottom: 5px;
+						}
+						&::before {
+							content: '';
+							display: block;
+							width: 5px;
+							height: 2px;
+							position: absolute;
+							top: 0;
+							bottom: 0;
+							margin: auto;
+							background: $primary;
+							left: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.img-responsive {
+	user-select: none;
+	height: 80%;
+}
