@@ -5,10 +5,11 @@
     "ng": "ng",
     "start": "ng serve --base-href /spacex-programe/ --port=4200",
     "build": "ng build --base-href /spacex-programe/",
-    "build:prod": "ng build --base-href /spacex-programe/ --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:stag": "ng build --base-href /spacex-programe/ --configuration=staging",
+    "build:prod": "ng build --base-href /spacex-programe/ --prod"
   },
   "private": true,
   "dependencies": {
