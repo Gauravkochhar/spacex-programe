@@ -16,7 +16,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 };
 
 @NgModule({
-  declarations: [MissionListComponent, MissionComponent],
+  declarations: [
+    MissionListComponent,
+    MissionComponent
+  ],
   imports: [
     CommonModule,
     SpaceMissionRoutingModule,
