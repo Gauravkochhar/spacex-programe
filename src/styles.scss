@@ -4,8 +4,11 @@
 @import './variables';
 @import './mixins';
 
-body {
-	background: $base-color;
+html, body { height: 100%; }
+
+body { 
+    margin: 0;
+    background: $base-color;
     overflow: hidden;
 }
 
@@ -55,7 +58,7 @@ body {
 	  position: fixed;
 	  @extend .center-aligned;
 	  z-index: 8;
-	  background: rgb(0 0 0 / 20%);
+	  background: rgb(0 0 0 / 40%);
 	  user-select: none;
 	  pointer-events: none;
 	  opacity: 0;

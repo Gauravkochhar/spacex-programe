@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoaderService {
 
-  private callPendingStatus = 0;
+  public callPendingStatus = 0;
   public status: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   public showLoader() {

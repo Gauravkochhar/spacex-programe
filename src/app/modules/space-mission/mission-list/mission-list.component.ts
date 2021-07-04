@@ -6,6 +6,7 @@ import { missionFilter } from 'src/app/core/constant';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { Mission } from 'src/app/core/model/spacex-program';
+import { LoaderService } from 'src/app/core/service/loader.service';
 
 @Component({
   selector: 'app-mission-list',
@@ -17,6 +18,7 @@ import { Mission } from 'src/app/core/model/spacex-program';
 export class MissionListComponent implements OnInit {
 
   public filterOpened = false;
+  public filterApplied = false;
   public readonly FILTER: any = missionFilter;
   public filterYearList: number[] = [];
   public defaultListView: boolean = true;
@@ -30,7 +32,8 @@ export class MissionListComponent implements OnInit {
 
   constructor(
     private _apiService: ApiService,
-    private _utilSerivice: UtilService
+    private _utilSerivice: UtilService,
+    public loaderService: LoaderService
   ) { }
 
   ngOnInit() {
@@ -69,15 +72,25 @@ export class MissionListComponent implements OnInit {
   checkFilter(FILTER: string, requestFilterVal: string | number | boolean) {
     this.appliedFilter[FILTER] = (this.appliedFilter[FILTER] === requestFilterVal) ? '' : requestFilterVal;
     this.getMissionList();
+    this.updateFilterStatus();
+
   }
 
-  resetFilter() {
-    this.appliedFilter = {
+  updateFilterStatus() {
+    this.filterApplied = !Object.keys(this.FILTER).every((filterKey) => this.appliedFilter[filterKey] === this.defaultFilter[filterKey]);
+  }
+
+  get defaultFilter(): any {
+    return {
       limit: '100',
       year: '',
       launch: '',
       landing: ''
-    }
+    };
+  }
+
+  resetFilter() {
+    this.appliedFilter = this.defaultFilter;
   }
 
 }

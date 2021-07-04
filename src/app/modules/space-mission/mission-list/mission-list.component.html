@@ -72,13 +72,13 @@
 						<p>Filter</p>
 						<div class="list-action-buttons" (click)="filterOpened = !filterOpened;">
 							<i class="material-icons">filter_list</i>
-							<span class="applied-filter"></span>
+							<span class="applied-filter" *ngIf="filterApplied"></span>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- End of List Header -->
-			<cdk-virtual-scroll-viewport itemSize="5" class="cdk-viewport">
+			<cdk-virtual-scroll-viewport itemSize="5" class="cdk-viewport" *ngIf="(missionList$ | async)?.length">
 				<!-- <perfect-scrollbar class="custom-scroll"> -->
 				<div class="row listing-row" [ngClass]="{'list-view': !defaultListView, 'grid-view': defaultListView}">
 					<div class="col-md-3 listing-col" *cdkVirtualFor="let mission of missionList$ | async;">
@@ -89,6 +89,10 @@
 				</div>
 				<!-- </perfect-scrollbar> -->
 			</cdk-virtual-scroll-viewport>
+			<div class="no-record-found" *ngIf="!(missionList$ | async)?.length && !loaderService.callPendingStatus">
+				<img src="assets/images/no-data-found.svg" alt="">
+				<p>No Record Found</p>
+			</div>
 		</div>
 	</div>
 
